@@ -1,0 +1,6 @@
+{
+    "name": "LAMP PHP8.3 MySQL5.7",
+    "dockerComposeFile": ["docker-compose.yml"],
+    "service": "php",
+    "workspaceFolder": "/var/www"
+}
