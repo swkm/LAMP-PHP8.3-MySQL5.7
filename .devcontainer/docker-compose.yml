@@ -1,4 +1,15 @@
 services:
+    php:
+        image: php:8.3-apache
+        tty: true
+        depends_on:
+            - mysql
+        ports:
+            - '80:80'
+        volumes:
+            - ../:/var/www
+        working_dir: /var/www
+
     mysql:
         image: mysql:5.7
         environment:
@@ -6,19 +17,8 @@ services:
             - MYSQL_DATABASE=test
             - MYSQL_USER=test
             - MYSQL_PASSWORD=test
-        ports:
-            - 3306:3306
-
-    php:
-        image: php:8.3-apache
-        tty: true
-        depends_on:
-            - mysql
-        ports:
-            - 8080:80
-        volumes:
-            - ../:/var/www
-        working_dir: /var/www
+        expose:
+            - '3306'
 
     phpmyadmin:
         image: phpmyadmin:5.2-apache
@@ -28,4 +28,4 @@ services:
             - PMA_HOST=mysql
         restart: always
         ports:
-            - 8000:80
+            - '8080:80'
