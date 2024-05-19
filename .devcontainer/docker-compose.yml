@@ -1,6 +1,8 @@
 services:
     php:
-        image: php:8.3-apache
+        build:
+            context: .
+            dockerfile: ./php/Dockerfile
         tty: true
         depends_on:
             - mysql
