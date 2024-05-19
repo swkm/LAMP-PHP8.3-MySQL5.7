@@ -10,6 +10,7 @@ services:
             - '80:80'
         volumes:
             - ../:/var/www
+            - ../.devcontainer/docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
         working_dir: /var/www
 
     mysql:
