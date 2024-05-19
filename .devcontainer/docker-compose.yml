@@ -1,15 +1,4 @@
 services:
-    php:
-        image: php:8.3-apache
-        tty: true
-        depend_on:
-            - mysql
-        ports:
-            - 8080:80
-        volumes:
-            - ../:/var/www
-        working_dir: /var/www
-
     mysql:
         image: mysql:5.7
         environment:
@@ -19,6 +8,17 @@ services:
             - MYSQL_PASSWORD=test
         ports:
             - 3306:3306
+
+    php:
+        image: php:8.3-apache
+        tty: true
+        depends_on:
+            - mysql
+        ports:
+            - 8080:80
+        volumes:
+            - ../:/var/www
+        working_dir: /var/www
 
     phpmyadmin:
         image: phpmyadmin:5.2-apache
